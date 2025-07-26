@@ -39,14 +39,6 @@ namespace DampingSystem
         {
         }
 
-        protected override Vector3 FilterNaN(Vector3 value)
-        {
-            return new Vector3(
-                x : float.IsNaN(value.x) ? 0 : value.x, 
-                y : float.IsNaN(value.y) ? 0 : value.y, 
-                z : float.IsNaN(value.z) ? 0 : value.z);
-        }
-
         protected override Vector3 GetXd(Vector3 x, float dt)
         {
             return (x - Xp) / dt;

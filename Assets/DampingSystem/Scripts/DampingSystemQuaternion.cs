@@ -38,30 +38,24 @@ namespace DampingSystem
         {
         }
 
-        protected override Quaternion FilterNaN(Quaternion value)
-        {
-            return new Quaternion(
-                x : float.IsNaN(value.x) ? 0 : value.x, 
-                y : float.IsNaN(value.y) ? 0 : value.y, 
-                z : float.IsNaN(value.z) ? 0 : value.z, 
-                w : float.IsNaN(value.w) ? 0 : value.w);
-        }
-
         protected override Quaternion GetXd(Quaternion x, float dt)
         {
-            return Quaternion.Slerp(Quaternion.identity, x * Quaternion.Inverse(Xp), dt);
+            if (dt == 0) return Quaternion.identity;
+            return Quaternion.SlerpUnclamped(Quaternion.identity, x * Quaternion.Inverse(Xp), 1f / dt);
         }
 
         protected override Quaternion GetY(float dt)
         {
-            return Quaternion.Slerp(Y, Y * Yd, dt);
+            return Quaternion.SlerpUnclamped(Y, Y * Yd, dt);
         }
 
         protected override Quaternion GetYd(float k1_stable, float k2_stable, Quaternion x, Quaternion xd, float dt)
         {
-            var term1 = Quaternion.Lerp(Quaternion.identity, xd, K3);
-            var term2 = Quaternion.Lerp(Quaternion.identity, Yd, k1_stable);
-            return Quaternion.Slerp(Yd, x * term1 * Quaternion.Inverse(Y) * Quaternion.Inverse(term2), dt/k2_stable);
+            var targetRotation = x * Quaternion.SlerpUnclamped(Quaternion.identity, xd, K3) * Quaternion.Inverse(Y);
+            var dampingTerm = Quaternion.SlerpUnclamped(Quaternion.identity, Yd, k1_stable);
+            var finalRotation = targetRotation * Quaternion.Inverse(dampingTerm);
+            
+            return Quaternion.SlerpUnclamped(Yd, finalRotation, dt / k2_stable);
         }
     }
 }

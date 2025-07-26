@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.2d.spriteshape": "9.0.5",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.cursor": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",

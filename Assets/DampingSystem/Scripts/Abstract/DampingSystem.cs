@@ -60,7 +60,7 @@ namespace DampingSystem
 
             W = 2 * Mathf.PI * frequency;
             Z = dampingRatio;
-            D = W * Mathf.Sqrt(initialResponse * initialResponse - 1f);
+            D = W * Mathf.Sqrt(Mathf.Abs(initialResponse * initialResponse - 1f));
 
             K1 = Z / (Mathf.PI * frequency);
             K2 = 1 / ( W * W );
@@ -133,11 +133,9 @@ namespace DampingSystem
 
             Y = GetY(dt);
             Yd = GetYd(k1Stable, k2Stable, x, xd, dt);
-            Yd = FilterNaN(Yd);
             return Y;
         }
 
-        protected abstract T FilterNaN(T value);
         protected abstract T GetXd(T x, float dt);
         protected abstract T GetY(float dt);
         protected abstract T GetYd(float k1_stable, float k2_stable, T x, T xd, float dt);

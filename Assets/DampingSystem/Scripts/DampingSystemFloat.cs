@@ -36,11 +36,6 @@ namespace DampingSystem
         {    
         }
 
-        protected override float FilterNaN(float value)
-        {
-            return float.IsNaN(value) ? 0 : value;
-        }
-
         protected override float GetXd(float x, float dt)
         {
             return (x - Xp) / dt;
