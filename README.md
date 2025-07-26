@@ -16,7 +16,7 @@ There is a [Korean translation](#korean) at the bottom.
 ---
 
 ## 📋 Table of Contents
-ㅉ
+
 1. [🎯 Project Introduction](#-project-introduction)
 2. [✨ Key Features](#-key-features)
 3. [🔧 Installation](#-installation)
@@ -44,7 +44,7 @@ There is a [Korean translation](#korean) at the bottom.
 
 - 🔬 **Mathematical Accuracy**: Physically accurate implementation based on second-order differential equations
 - ⚡ **High Performance**: Runtime performance guaranteed with `AggressiveInlining` optimization
-- 🎯 **Multiple Type Support**: Full support for float, Vector2/3/4, Quaternion
+- 🎯 **Multiple Type Support**: Full support for float, Vector2/3/4
 - 🛡️ **Stability**: NaN prevention and numerical stability assurance
 - 🔧 **Ease of Use**: Easy setup with intuitive parameters
 - 📚 **Complete Documentation**: Fully documented in both Korean and English
@@ -93,27 +93,6 @@ public class PlayerController : MonoBehaviour
 }
 ```
 
-### Rotation Animation
-
-```csharp
-private DampingSystemQuaternion rotationDamper;
-
-void Start()
-{
-    rotationDamper = new DampingSystemQuaternion(
-        frequency: 1.5f,
-        dampingRatio: 0.8f,  // Slight overshoot
-        initialResponse: 0.2f,
-        initialCondition: transform.rotation
-    );
-}
-
-void Update()
-{
-    Quaternion targetRotation = GetTargetRotation();
-    transform.rotation = rotationDamper.Calculate(targetRotation);
-}
-```
 
 ---
 
@@ -177,10 +156,12 @@ For detailed information, refer to this [video](https://www.youtube.com/watch?v=
 
 ## 🎮 Supported Types
 
+The DampingSystem package provides specialized implementations for different data types, each optimized for their specific use cases:
+
 ### Scalar Type
 
 ```csharp
-// Float damping
+// Float damping - perfect for UI animations, health bars, etc.
 var floatDamper = new DampingSystemFloat(2.0f, 1.0f, 0.0f, 0.0f);
 float smoothValue = floatDamper.Calculate(targetValue);
 ```
@@ -188,24 +169,29 @@ float smoothValue = floatDamper.Calculate(targetValue);
 ### Vector Types
 
 ```csharp
-// 2D position damping
+// 2D position damping - ideal for 2D games and UI elements
 var vec2Damper = new DampingSystemVector2(1.5f, 0.8f, 0.0f, Vector2.zero);
 
-// 3D position damping  
+// 3D position damping - for smooth character/camera movement
 var vec3Damper = new DampingSystemVector3(2.0f, 1.0f, 0.1f, Vector3.zero);
 
-// 4D vector damping (colors, etc.)
+// 4D vector damping - useful for color transitions, RGBA values
 var vec4Damper = new DampingSystemVector4(3.0f, 1.2f, 0.0f, Vector4.one);
 ```
 
-### Rotation Type
 
-```csharp
-// Quaternion rotation damping (Slerp-based)
-var rotDamper = new DampingSystemQuaternion(
-    1.0f, 0.9f, 0.0f, Quaternion.identity
-);
+### Implementation Structure
+
+All damping systems inherit from the abstract base class `DampingSystem<T>` located in:
 ```
+Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
+```
+
+Each type-specific implementation can be found in:
+- `DampingSystemFloat.cs`
+- `DampingSystemVector2.cs` 
+- `DampingSystemVector3.cs`
+- `DampingSystemVector4.cs`
 
 ---
 
@@ -223,8 +209,9 @@ var rotDamper = new DampingSystemQuaternion(
 | Type            | Operation Time (ns) | Memory Usage |
 |:---------------:|:-------------------:|:------------:|
 | Float           | ~15                 | 64 bytes     |
+| Vector2         | ~30                 | 80 bytes     |
 | Vector3         | ~45                 | 96 bytes     |
-| Quaternion      | ~80                 | 112 bytes    |
+| Vector4         | ~60                 | 112 bytes    |
 
 ---
 
@@ -297,7 +284,7 @@ Youtube 영상 [Giving Personality to Procedural Animations using Math](https://
 
 - 🔬 **수학적 정확성**: 2차 미분방정식 기반의 물리적으로 정확한 구현
 - ⚡ **고성능**: `AggressiveInlining` 최적화로 런타임 성능 보장
-- 🎯 **다양한 타입 지원**: float, Vector2/3/4, Quaternion 완벽 지원
+- 🎯 **다양한 타입 지원**: float, Vector2/3/4 완벽 지원
 - 🛡️ **안정성**: NaN 방지 및 수치적 안정성 보장
 - 🔧 **사용 편의성**: 직관적인 매개변수로 쉬운 설정
 - 📚 **완전한 문서화**: 한국어/영어 이중 문서화
@@ -346,27 +333,6 @@ public class PlayerController : MonoBehaviour
 }
 ```
 
-### 회전 애니메이션
-
-```csharp
-private DampingSystemQuaternion rotationDamper;
-
-void Start()
-{
-    rotationDamper = new DampingSystemQuaternion(
-        frequency: 1.5f,
-        dampingRatio: 0.8f,  // 약간의 오버슈트
-        initialResponse: 0.2f,
-        initialCondition: transform.rotation
-    );
-}
-
-void Update()
-{
-    Quaternion targetRotation = GetTargetRotation();
-    transform.rotation = rotationDamper.Calculate(targetRotation);
-}
-```
 
 ---
 
@@ -430,10 +396,12 @@ DampingSystem은 다음 2차 미분방정식을 기반으로 합니다:
 
 ## 🎮 지원 타입
 
+DampingSystem 패키지는 각각의 특정 사용 사례에 최적화된 다양한 데이터 타입별 특화 구현을 제공합니다:
+
 ### 스칼라 타입
 
 ```csharp
-// Float 감쇠
+// Float 감쇠 - UI 애니메이션, 체력바 등에 완벽
 var floatDamper = new DampingSystemFloat(2.0f, 1.0f, 0.0f, 0.0f);
 float smoothValue = floatDamper.Calculate(targetValue);
 ```
@@ -441,24 +409,29 @@ float smoothValue = floatDamper.Calculate(targetValue);
 ### 벡터 타입
 
 ```csharp
-// 2D 위치 감쇠
+// 2D 위치 감쇠 - 2D 게임과 UI 요소에 이상적
 var vec2Damper = new DampingSystemVector2(1.5f, 0.8f, 0.0f, Vector2.zero);
 
-// 3D 위치 감쇠  
+// 3D 위치 감쇠 - 부드러운 캐릭터/카메라 움직임용
 var vec3Damper = new DampingSystemVector3(2.0f, 1.0f, 0.1f, Vector3.zero);
 
-// 4D 벡터 감쇠 (색상 등)
+// 4D 벡터 감쇠 - 색상 전환, RGBA 값에 유용
 var vec4Damper = new DampingSystemVector4(3.0f, 1.2f, 0.0f, Vector4.one);
 ```
 
-### 회전 타입
 
-```csharp
-// Quaternion 회전 감쇠 (Slerp 기반)
-var rotDamper = new DampingSystemQuaternion(
-    1.0f, 0.9f, 0.0f, Quaternion.identity
-);
+### 구현 구조
+
+모든 감쇠 시스템은 다음 위치의 추상 기본 클래스 `DampingSystem<T>`를 상속받습니다:
 ```
+Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
+```
+
+각 타입별 구현은 다음에서 찾을 수 있습니다:
+- `DampingSystemFloat.cs`
+- `DampingSystemVector2.cs` 
+- `DampingSystemVector3.cs`
+- `DampingSystemVector4.cs`
 
 ---
 
@@ -476,8 +449,9 @@ var rotDamper = new DampingSystemQuaternion(
 | 타입             | 연산 시간 (ns) | 메모리 사용량 |
 |:---------------:|:-------------:|:-----------:|
 | Float           | ~15           | 64 bytes    |
+| Vector2         | ~30           | 80 bytes    |
 | Vector3         | ~45           | 96 bytes    |
-| Quaternion      | ~80           | 112 bytes   |
+| Vector4         | ~60           | 112 bytes   |
 
 ---
 
