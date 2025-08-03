@@ -22,7 +22,7 @@ namespace DampingSystem
     /// <remarks>
     /// <b>Supported data type list :</b><br />
     /// 지원하는 자료형 목록 :<br/>
-    /// <ul><li>float</li><li>Vector2</li><li>Vector3</li><li>Vector4</li></ul>
+    /// <ul><li>float</li> <li>float2</li> <li>float3</li> <li>float4</li> <li>Vector2</li> <li>Vector3</li> <li>Vector4</li></ul>
     /// </remarks>
     /// <typeparam name="T"><b>Type to which damping is to be applied</b><br />
     /// Damping을 적용하고자 하는 타입</typeparam>
