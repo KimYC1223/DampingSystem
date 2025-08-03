@@ -1,0 +1,16 @@
+{
+  "name": "builds",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "KimYC1223",
+  "license": "ISC",
+  "description": "Damping System WebGL Demo",
+  "dependencies": {
+    "express": "^5.1.0",
+    "path": "^0.12.7"
+  }
+}

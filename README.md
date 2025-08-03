@@ -1,3 +1,5 @@
+<a name="english"></a>
+
 # DampingSystem
 
 <div align="center">
@@ -9,7 +11,7 @@
 
 Youtube video [Giving Personality to Procedural Animations using Math](https://www.youtube.com/watch?v=KPoeNZZ6H4s) inspired Unity package.
 
-There is a [Korean translation](#korean) at the bottom.
+하단에 [한국어 번역](#korean)이 있습니다.
 
 </div>
 
@@ -43,9 +45,7 @@ There is a [Korean translation](#korean) at the bottom.
 ## ✨ Key Features
 
 - 🔬 **Mathematical Accuracy**: Physically accurate implementation based on second-order differential equations
-- ⚡ **High Performance**: Runtime performance guaranteed with `AggressiveInlining` optimization
 - 🎯 **Multiple Type Support**: Full support for float, Vector2/3/4
-- 🛡️ **Stability**: NaN prevention and numerical stability assurance
 - 🔧 **Ease of Use**: Easy setup with intuitive parameters
 - 📚 **Complete Documentation**: Fully documented in both Korean and English
 
@@ -215,7 +215,50 @@ Each type-specific implementation can be found in:
 
 ---
 
+## 🎯 Comparison with Other Libraries
+
+### 🔷 DOTween
+
+DampingSystem is a Unity library that implements natural damping animation through second-order differential equation-based physics simulation. It is controlled by physics parameters like frequency and dampingRatio, and its struct-based design allows for zero memory allocation and high performance (15-60 ns). DOTween, on the other hand, is an interpolation-based tweening library that provides precise timing control and a variety of animation effects through duration and easing functions.
+
+The key difference lies in the approach. DampingSystem simulates a physically accurate spring-damper system, providing natural responses even when target values change in real-time, making it ideal for camera tracking and character movement. DOTween animates along predefined paths and times, making it ideal for situations requiring precise timing, such as UI animations and cutscenes. While DampingSystem is approximately 2-4 times faster and more memory-efficient, DOTween offers a richer feature set and a more robust sequencing system.
+
+#### 📊 Differences
+
+| Items | DampingSystem | DOTween |
+|:---:|:---|:---|
+| **Mathematical Basis** | Second-Order Differential Equation-Based Physics Simulation | Interpolation-Based Animation |
+| **Dependencies** | Uses only Unity built-in functions | External Libraries |
+| **Memory Allocation** | Zero-Allocation (struct-based) | Requires Object Pooling |
+| **Performance** | 15-60ns (depending on type) | 100-200ns |
+| **Animation Style** | Physically Natural Movements | Various Easing Functions |
+| **Control Method** | Physics Parameters (frequency, damping) | Time-Based (duration, delay) |
+
+#### When to Choose DampingSystem
+
+- ✅ When you need **natural physical movement**
+- Camera tracking, character movement, smooth UI element response
+- ✅ When you need **real-time responsive animation**
+- When target values constantly change (mouse tracking, player following)
+- ✅ When you want to **minimize external dependencies**
+- ✅ When you want to **control physical properties** (damping ratio, frequency, etc.)
+
+#### When to Choose DOTween
+
+- ✅ When you need **precise timing control**
+- Cutscenes, sequence animations, and timing-critical productions
+- ✅ When you need **various easing effects**
+- Special effects such as Ease In/Out, Bounce, and Elastic
+- ✅ When you need **complex animation chains**
+- Sequential animation, callbacks, and event systems
+- ✅ When you need specialized features for **UI animation**
+- Various property animations such as size, rotation, color change, etc.
+
+---
+
 ## 🔗 References
+
+* [Giving Personality to Procedural Animations using Math](https://www.youtube.com/watch?v=KPoeNZZ6H4s)
 
 ---
 
@@ -233,8 +276,11 @@ Made with ❤️ by KimYC1223
 
 </div>
 
+<br />
+
 ---
----
+
+<br />
 
 <a name="korean"></a>
 
@@ -249,7 +295,7 @@ Made with ❤️ by KimYC1223
 
 Youtube 영상 [Giving Personality to Procedural Animations using Math](https://www.youtube.com/watch?v=KPoeNZZ6H4s)을 보고 영감을 받아 만든 Unity package입니다.
 
-상단에 [영어 번역](#dampingsystem)이 있습니다.
+There is a [English translation](#english) at the top.
 
 </div>
 
@@ -283,9 +329,7 @@ Youtube 영상 [Giving Personality to Procedural Animations using Math](https://
 ## ✨ 주요 특징
 
 - 🔬 **수학적 정확성**: 2차 미분방정식 기반의 물리적으로 정확한 구현
-- ⚡ **고성능**: `AggressiveInlining` 최적화로 런타임 성능 보장
 - 🎯 **다양한 타입 지원**: float, Vector2/3/4 완벽 지원
-- 🛡️ **안정성**: NaN 방지 및 수치적 안정성 보장
 - 🔧 **사용 편의성**: 직관적인 매개변수로 쉬운 설정
 - 📚 **완전한 문서화**: 한국어/영어 이중 문서화
 
@@ -293,7 +337,7 @@ Youtube 영상 [Giving Personality to Procedural Animations using Math](https://
 
 ## 🔧 설치 방법
 
-[최신의 release된 Unity Package](https://github.com/KimYC1223/DampingSystem/releases)를 다운로드 하거나, 이 repo를 다운받으면 된다.
+[최신의 release된 Unity Package](https://github.com/KimYC1223/DampingSystem/releases)를 다운로드 하거나, 이 repo를 다운받으면 됩니다.
 
 ### 요구사항
 
@@ -332,7 +376,6 @@ public class PlayerController : MonoBehaviour
     }
 }
 ```
-
 
 ---
 
@@ -455,7 +498,50 @@ Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
 
 ---
 
+## 🎯 다른 라이브러리와 비교
+
+### 🔷 DOTween
+
+DampingSystem은 2차 미분방정식 기반의 물리 시뮬레이션을 통해 자연스러운 감쇠 애니메이션을 구현하는 Unity 라이브러리입니다. frequency와 dampingRatio 같은 물리 매개변수로 제어하며, struct 기반 설계로 제로 메모리 할당과 15-60ns의 고성능을 제공합니다. 반면 DOTween은 보간 기반의 트위닝 라이브러리로, duration과 easing 함수를 통해 정확한 시간 제어와 다양한 애니메이션 효과를 제공합니다.
+
+핵심 차이점은 접근 방식에 있습니다. DampingSystem은 물리적으로 정확한 스프링-댐퍼 시스템을 시뮬레이션하여 목표값이 실시간으로 변하는 상황에서도 자연스러운 반응을 보이며, 카메라 추적이나 캐릭터 이동에 적합합니다. DOTween은 미리 정의된 경로와 시간을 따라 애니메이션하므로 UI 연출이나 컷신 같은 정확한 타이밍이 필요한 상황에 최적화되어 있습니다. 성능 면에서 DampingSystem이 약 2-4배 빠르고 메모리 효율적이지만, DOTween은 더 풍부한 기능과 시퀀싱 시스템을 제공합니다.
+
+### 📊 핵심 차이점
+
+| 항목 | DampingSystem | DOTween |
+|:---:|:---|:---|
+| **수학적 기반** | 2차 미분방정식 기반 물리 시뮬레이션 | 보간 기반 애니메이션 |
+| **의존성** | Unity 내장 기능만 사용 | 외부 라이브러리 |
+| **메모리 할당** | 제로 할당 (struct 기반) | 객체 풀링 필요 |
+| **성능** | 15-60ns (타입별) | 100-200ns |
+| **애니메이션 스타일** | 물리적으로 자연스러운 움직임 | 다양한 이징 함수 |
+| **제어 방식** | 물리 매개변수 (frequency, damping) | 시간 기반 (duration, delay) |
+
+### DampingSystem을 선택해야 하는 경우
+
+- ✅ **자연스러운 물리적 움직임**이 필요한 경우
+  - 카메라 추적, 캐릭터 이동, UI 요소의 부드러운 반응
+- ✅ **실시간 반응형 애니메이션**이 필요한 경우
+  - 목표값이 계속 변하는 상황 (마우스 추적, 플레이어 따라가기)
+- ✅ **외부 의존성을 최소화**하고 싶은 경우
+- ✅ **물리적 특성을 조절**하고 싶은 경우 (감쇠비, 진동수 등)
+
+### DOTween을 선택해야 하는 경우
+
+- ✅ **정확한 시간 제어**가 필요한 경우
+  - 컷신, 시퀀스 애니메이션, 타이밍이 중요한 연출
+- ✅ **다양한 이징 효과**가 필요한 경우
+  - Ease In/Out, Bounce, Elastic 등의 특수 효과
+- ✅ **복잡한 애니메이션 체인**이 필요한 경우
+  - 순차적 애니메이션, 콜백, 이벤트 시스템
+- ✅ **UI 애니메이션**에 특화된 기능이 필요한 경우
+  - 크기, 회전, 색상 변경 등의 다양한 프로퍼티 애니메이션
+  
+---
+
 ## 🔗 참고자료
+
+* [Giving Personality to Procedural Animations using Math](https://www.youtube.com/watch?v=KPoeNZZ6H4s)
 
 ---
 
