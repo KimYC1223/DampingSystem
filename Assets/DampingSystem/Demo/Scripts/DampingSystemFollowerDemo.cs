@@ -16,7 +16,8 @@ namespace DampingSystem.Demo
         }
 
         [Header("Target")]
-        [SerializeField] private Animator leader;
+        [SerializeField] private Animator leaderAnimator;
+        [SerializeField] private Transform leader;
         [SerializeField] private Transform follower;
         [SerializeField] private Vector3 followerOffset;
         [SerializeField] private Transform cameraAnchor;
@@ -39,6 +40,8 @@ namespace DampingSystem.Demo
         [SerializeField] private Speed[] speedSettings;
 
         private MaterialPropertyBlock lineRendererPropertyBlock;
+        private int lineRendererMainTextSTId;
+        private int lineRendererBaseSize;
         private DampingSystemVector3 dampingSystem;
         private Vector3 cameraAnchorInitialPosition;
         private Vector3 targetPosition;
@@ -68,9 +71,10 @@ namespace DampingSystem.Demo
         private void InitField()
         {
             lineRendererPropertyBlock = new MaterialPropertyBlock();
-            
+            lineRendererMainTextSTId = Shader.PropertyToID("_MainTex_ST");
             panel.Init(SetDampingSystem);
             useCameraFollowing = false;
+            lineRendererBaseSize = 16;
             speedIndex = 2;
         }
 
@@ -106,7 +110,7 @@ namespace DampingSystem.Demo
 
         private void Update()
         {
-            targetPosition = leader.transform.position + followerOffset;
+            targetPosition = leader.position + followerOffset;
             follower.position = dampingSystem.Calculate(targetPosition);
 
             if (useCameraFollowing == false)
@@ -117,18 +121,16 @@ namespace DampingSystem.Demo
 
         private void LateUpdate()
         {
-            if (leader.transform.position == follower.position)
+            if (leader.position == follower.position)
                 return;
 
-            lineRenderer.SetPosition(0, leader.transform.position);
+            lineRenderer.SetPosition(0, leader.position);
             lineRenderer.SetPosition(1, follower.position);
 
-            // 라인 렌더러의 텍스처 스케일 변경
-            float distance = Vector3.Distance(leader.transform.position, follower.position);
-            float textureScale = 16f / distance; // 원하는 스케일링 factor 조정
-            
-            // MaterialPropertyBlock을 사용하여 텍스처 스케일 설정
-            lineRendererPropertyBlock.SetVector("_MainTex_ST", new Vector4(textureScale, 1f, 0f, 0f));
+            float distance = Vector3.Distance(leader.position, follower.position);
+            float textureScale = lineRendererBaseSize / distance;
+
+            lineRendererPropertyBlock.SetVector(lineRendererMainTextSTId, new Vector4(textureScale, 1f, 0f, 0f));
             lineRenderer.SetPropertyBlock(lineRendererPropertyBlock);
         }
 
@@ -136,6 +138,9 @@ namespace DampingSystem.Demo
         {
             useCameraFollowing = !useCameraFollowing;
             SetUiState();
+
+            lineRenderer.gameObject.SetActive(useCameraFollowing == false);
+            follower.gameObject.SetActive(useCameraFollowing == false);
 
             if (useCameraFollowing)
                 return;
@@ -149,7 +154,7 @@ namespace DampingSystem.Demo
                 return;
 
             speedIndex = index;
-            leader.speed = speedSettings[speedIndex].SpeedSliderValue;
+            leaderAnimator.speed = speedSettings[speedIndex].SpeedSliderValue;
 
             SetUiState();
         }

@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace DampingSystem.Demo
 {
     public class DampingSystemVector2Demo : MonoBehaviour, IPointerClickHandler
     {
+        public Vector2 CanvasHalfSize => canvas.rect.size * 0.5f;
+
 
         [Header("Target")]
         [SerializeField] private RectTransform target;
@@ -34,18 +35,7 @@ namespace DampingSystem.Demo
 
         private void InitTargetPosition()
         {
-            var rectTransform = GetComponent<RectTransform>();
-            var screenCenter = new Vector2(rectTransform.rect.width / 2, rectTransform.rect.height / 2);
-
-            target.anchorMin = Vector2.zero;
-            target.anchorMax = Vector2.zero;
-            target.anchoredPosition = screenCenter;
-
-            cursorImage.anchorMin = Vector2.zero;
-            cursorImage.anchorMax = Vector2.zero;
-            cursorImage.anchoredPosition = screenCenter;
             cursorImage.gameObject.SetActive(false);
-
             targetPosition = target.anchoredPosition;
         }
 
@@ -89,10 +79,8 @@ namespace DampingSystem.Demo
             if (results.Count == 0 || results[0].gameObject != gameObject)
                 return;
 
-            Debug.Log(eventData.position);
-            targetPosition = eventData.position / canvas.localScale;
-            Debug.Log(targetPosition);
-
+            targetPosition = eventData.position / canvas.localScale - CanvasHalfSize;
+            
             DrawCursorEffect();
         }
     }
