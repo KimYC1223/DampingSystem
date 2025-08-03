@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/DampingSystem/Demo/Scenes/Vector2DemoScene.unity
+    guid: 12345678901234567890123456789012
+  - enabled: 1
+    path: Assets/DampingSystem/Demo/Scenes/Vector3DemoScene.unity
+    guid: 24cc94a0ffbb9df45943092b30e3de31
+  - enabled: 1
+    path: Assets/DampingSystem/Demo/Scenes/ObjectTargetDemoScene.unity
+    guid: 6b9816630c070454796f4a051bac7bfd
+  - enabled: 1
+    path: Assets/DampingSystem/Demo/Scenes/CardDemoScene.unity
+    guid: 74c09afe254a28340bc418b27e289ee9
   m_configObjects: {}
