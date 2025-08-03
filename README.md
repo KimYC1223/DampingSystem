@@ -45,7 +45,7 @@ Youtube video [Giving Personality to Procedural Animations using Math](https://w
 ## ✨ Key Features
 
 - 🔬 **Mathematical Accuracy**: Physically accurate implementation based on second-order differential equations
-- 🎯 **Multiple Type Support**: Full support for float, Vector2/3/4
+- 🎯 **Multiple Type Support**: Full support for float, float2/3, Vector2/3/4
 - 🔧 **Ease of Use**: Easy setup with intuitive parameters
 - 📚 **Complete Documentation**: Fully documented in both Korean and English
 
@@ -158,12 +158,24 @@ For detailed information, refer to this [video](https://www.youtube.com/watch?v=
 
 The DampingSystem package provides specialized implementations for different data types, each optimized for their specific use cases:
 
-### Scalar Type
+### Scalar Types
 
 ```csharp
 // Float damping - perfect for UI animations, health bars, etc.
 var floatDamper = new DampingSystemFloat(2.0f, 1.0f, 0.0f, 0.0f);
 float smoothValue = floatDamper.Calculate(targetValue);
+```
+
+### Unity.Mathematics Types
+
+```csharp
+// Float2 damping - optimized for 2D coordinates using Unity.Mathematics
+var float2Damper = new DampingSystemFloat2(2.0f, 1.0f, 0.0f, new float2(0, 0));
+float2 smoothPos2D = float2Damper.Calculate(targetPos2D);
+
+// Float3 damping - optimized for 3D coordinates using Unity.Mathematics
+var float3Damper = new DampingSystemFloat3(2.0f, 1.0f, 0.0f, new float3(0, 0, 0));
+float3 smoothPos3D = float3Damper.Calculate(targetPos3D);
 ```
 
 ### Vector Types
@@ -189,6 +201,8 @@ Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
 
 Each type-specific implementation can be found in:
 - `DampingSystemFloat.cs`
+- `DampingSystemFloat2.cs` (Unity.Mathematics)
+- `DampingSystemFloat3.cs` (Unity.Mathematics)
 - `DampingSystemVector2.cs` 
 - `DampingSystemVector3.cs`
 - `DampingSystemVector4.cs`
@@ -209,6 +223,8 @@ Each type-specific implementation can be found in:
 | Type            | Operation Time (ns) | Memory Usage |
 |:---------------:|:-------------------:|:------------:|
 | Float           | ~15                 | 64 bytes     |
+| Float2          | ~25                 | 72 bytes     |
+| Float3          | ~35                 | 88 bytes     |
 | Vector2         | ~30                 | 80 bytes     |
 | Vector3         | ~45                 | 96 bytes     |
 | Vector4         | ~60                 | 112 bytes    |
@@ -329,7 +345,7 @@ There is a [English translation](#english) at the top.
 ## ✨ 주요 특징
 
 - 🔬 **수학적 정확성**: 2차 미분방정식 기반의 물리적으로 정확한 구현
-- 🎯 **다양한 타입 지원**: float, Vector2/3/4 완벽 지원
+- 🎯 **다양한 타입 지원**: float, float2/3, Vector2/3/4 완벽 지원
 - 🔧 **사용 편의성**: 직관적인 매개변수로 쉬운 설정
 - 📚 **완전한 문서화**: 한국어/영어 이중 문서화
 
@@ -449,6 +465,18 @@ var floatDamper = new DampingSystemFloat(2.0f, 1.0f, 0.0f, 0.0f);
 float smoothValue = floatDamper.Calculate(targetValue);
 ```
 
+### Unity.Mathematics 타입
+
+```csharp
+// Float2 감쇠 - Unity.Mathematics를 사용한 최적화된 2D 좌표
+var float2Damper = new DampingSystemFloat2(2.0f, 1.0f, 0.0f, new float2(0, 0));
+float2 smoothPos2D = float2Damper.Calculate(targetPos2D);
+
+// Float3 감쇠 - Unity.Mathematics를 사용한 최적화된 3D 좌표
+var float3Damper = new DampingSystemFloat3(2.0f, 1.0f, 0.0f, new float3(0, 0, 0));
+float3 smoothPos3D = float3Damper.Calculate(targetPos3D);
+```
+
 ### 벡터 타입
 
 ```csharp
@@ -472,6 +500,8 @@ Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
 
 각 타입별 구현은 다음에서 찾을 수 있습니다:
 - `DampingSystemFloat.cs`
+- `DampingSystemFloat2.cs` (Unity.Mathematics)
+- `DampingSystemFloat3.cs` (Unity.Mathematics)
 - `DampingSystemVector2.cs` 
 - `DampingSystemVector3.cs`
 - `DampingSystemVector4.cs`
@@ -492,6 +522,8 @@ Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
 | 타입             | 연산 시간 (ns) | 메모리 사용량 |
 |:---------------:|:-------------:|:-----------:|
 | Float           | ~15           | 64 bytes    |
+| Float2          | ~25           | 72 bytes    |
+| Float3          | ~35           | 88 bytes    |
 | Vector2         | ~30           | 80 bytes    |
 | Vector3         | ~45           | 96 bytes    |
 | Vector4         | ~60           | 112 bytes   |
