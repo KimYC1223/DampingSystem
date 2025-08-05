@@ -36,7 +36,7 @@ Youtube video [Giving Personality to Procedural Animations using Math](https://w
 
 ## 🎯 Project Introduction
 
-**DampingSystem** is a second-order system-based damping library for creating natural and smooth animations in Unity. It simulates spring-damper system motion using physically accurate mathematical models.
+**DampingSystem** is a [second-order system](https://www.uml.edu/docs/Second-Theory_tcm18-190098.pdf) based damping library for creating natural and smooth animations in Unity. It simulates spring-damper system motion using physically accurate mathematical models.
 
 ### 🎥 WebGL Demo
 
@@ -353,7 +353,7 @@ There is a [English translation](#english) at the top.
 
 ## 🎯 프로젝트 소개
 
-**DampingSystem**은 Unity에서 자연스럽고 부드러운 애니메이션을 구현하기 위한 2차 시스템 기반 감쇠 라이브러리입니다. 물리적으로 정확한 수학 모델을 사용하여 스프링-댐퍼 시스템의 움직임을 시뮬레이션합니다.
+**DampingSystem**은 Unity에서 자연스럽고 부드러운 애니메이션을 구현하기 위한 [2차 시스템 기반](https://www.uml.edu/docs/Second-Theory_tcm18-190098.pdf) 감쇠 라이브러리입니다. 물리적으로 정확한 수학 모델을 사용하여 스프링-댐퍼 시스템의 움직임을 시뮬레이션합니다.
 
 ### 🎥 WebGL데모
 
