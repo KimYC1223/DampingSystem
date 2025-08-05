@@ -215,13 +215,6 @@ Each type-specific implementation can be found in:
 
 ## 📊 Performance Characteristics
 
-### Optimization Techniques
-
-- **Aggressive Inlining**: Eliminates function call overhead
-- **Struct-based**: Minimizes memory allocation
-- **NaN Filtering**: Safe numerical operations
-- **Conditional Calculation**: Skips unnecessary operations
-
 ### Benchmark Results
 
 | Type            | Operation Time (ns) | Memory Usage |
@@ -239,9 +232,13 @@ Each type-specific implementation can be found in:
 
 ### 🔷 DOTween
 
-DampingSystem is a Unity library that implements natural damping animation through second-order differential equation-based physics simulation. It is controlled by physics parameters like frequency and dampingRatio, and its struct-based design allows for zero memory allocation and high performance (15-60 ns). DOTween, on the other hand, is an interpolation-based tweening library that provides precise timing control and a variety of animation effects through duration and easing functions.
+DampingSystem is a Unity library that simulates second-order differential equations to create smooth, natural damping animations. You can tweak the motion using physical parameters like `frequency` and `dampingRatio`, and since it’s built on a struct-based design, it runs with zero memory allocations and delivers lightning-fast performance—around 15–60ns per update.
 
-The key difference lies in the approach. DampingSystem simulates a physically accurate spring-damper system, providing natural responses even when target values change in real-time, making it ideal for camera tracking and character movement. DOTween animates along predefined paths and times, making it ideal for situations requiring precise timing, such as UI animations and cutscenes. While DampingSystem is approximately 2-4 times faster and more memory-efficient, DOTween offers a richer feature set and a more robust sequencing system.
+DOTween, on the other hand, is an interpolation-based tweening library. It lets you control animation precisely over a set `duration` using `easing functions`, making it easy to create a wide variety of animation effects.
+
+The key difference lies in their approach. DampingSystem uses a physically accurate spring-damper model, so it responds naturally even when the target value changes in real time. This makes it great for things like camera tracking or character movement. DOTween, in contrast, follows predefined paths and timings, making it ideal for UI animations, cutscenes, or anything where precise timing is essential.
+
+In terms of raw performance, DampingSystem can be about 2–4× faster and more memory-efficient. But DOTween shines when it comes to rich features and its sequencing system, which gives you a lot of flexibility for complex animations.
 
 #### 📊 Differences
 
@@ -260,15 +257,15 @@ The key difference lies in the approach. DampingSystem simulates a physically ac
 
 ✅ When you need **natural physical movement**
 
-    *Camera tracking, character movement, smooth UI element response*
+    Camera tracking, character movement, smooth UI element response
 
 ✅ When you need **real-time responsive animation**
 
-    *When target values constantly change (mouse tracking, player following)*
+    When target values constantly change (mouse tracking, player following)
 
 ✅ When you want to **control physical properties** 
 
-    *damping ratio, frequency, etc.*
+    damping ratio, frequency, etc.
 
 <br />
 
@@ -276,19 +273,19 @@ The key difference lies in the approach. DampingSystem simulates a physically ac
 
 ✅ When you need **precise timing control**
 
-    *Cutscenes, sequence animations, and timing-critical productions*
+    Cutscenes, sequence animations, and timing-critical productions
 
 ✅ When you need **various easing effects**
 
-    *Special effects such as Ease In/Out, Bounce, and Elastic*
+    Special effects such as Ease In/Out, Bounce, and Elastic
 
 ✅ When you need **complex animation chains**
 
-    *Sequential animation, callbacks, and event systems*
+    Sequential animation, callbacks, and event systems
 
 ✅ When you need specialized features for **UI animation**
 
-    *Various property animations such as size, rotation, color change, etc.*
+    Various property animations such as size, rotation, color change, etc.
 
 ---
 
@@ -534,13 +531,6 @@ Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
 
 ## 📊 성능 특성
 
-### 최적화 기법
-
-- **Aggressive Inlining**: 함수 호출 오버헤드 제거
-- **구조체 기반**: 메모리 할당 최소화
-- **NaN 필터링**: 안전한 수치 연산
-- **조건부 계산**: 불필요한 연산 스킵
-
 ### 벤치마크 결과
 
 | 타입             | 연산 시간 (ns) | 메모리 사용량 |
@@ -558,9 +548,13 @@ Assets/DampingSystem/Scripts/Abstract/DampingSystem.cs
 
 ### 🔷 DOTween
 
-DampingSystem은 2차 미분방정식 기반의 물리 시뮬레이션을 통해 자연스러운 감쇠 애니메이션을 구현하는 Unity 라이브러리입니다. frequency와 dampingRatio 같은 물리 매개변수로 제어하며, struct 기반 설계로 제로 메모리 할당과 15-60ns의 고성능을 제공합니다. 반면 DOTween은 보간 기반의 트위닝 라이브러리로, duration과 easing 함수를 통해 정확한 시간 제어와 다양한 애니메이션 효과를 제공합니다.
+DampingSystem은 2차 미분방정식을 기반으로 물리 시뮬레이션을 돌려서, 자연스럽게 감쇠되는 애니메이션을 만들어주는 Unity 라이브러리입니다. `frequency`나 `dampingRatio` 같은 물리 파라미터로 움직임을 조절하고, struct 기반이라 메모리 할당 없이 15~60ns 정도의 빠른 성능을 보여줍니다.
 
-핵심 차이점은 접근 방식에 있습니다. DampingSystem은 물리적으로 정확한 스프링-댐퍼 시스템을 시뮬레이션하여 목표값이 실시간으로 변하는 상황에서도 자연스러운 반응을 보이며, 카메라 추적이나 캐릭터 이동에 적합합니다. DOTween은 미리 정의된 경로와 시간을 따라 애니메이션하므로 UI 연출이나 컷신 같은 정확한 타이밍이 필요한 상황에 최적화되어 있습니다. 성능 면에서 DampingSystem이 약 2-4배 빠르고 메모리 효율적이지만, DOTween은 더 풍부한 기능과 시퀀싱 시스템을 제공합니다.
+반면 DOTween은 보간(Interpolation) 방식의 트위닝 라이브러리로, `duration`과 `이징 함수`를 이용해 애니메이션 시간을 정확히 맞추고 다양한 연출 효과를 만들 수 있습니다.
+
+둘의 핵심 차이는 접근 방식에 있습니다. DampingSystem은 물리적으로 정확한 스프링-댐퍼 모델을 시뮬레이션하기 때문에, 목표값이 실시간으로 바뀌어도 자연스럽게 따라가는 데 강점이 있습니다. 그래서 카메라 추적이나 캐릭터 이동 같은 상황에 특히 잘 어울립니다. 반대로 DOTween은 미리 정해둔 경로나 시간을 그대로 따라가서, UI 애니메이션이나 컷신처럼 정확한 타이밍이 중요한 연출에 적합합니다.
+
+성능만 보면 DampingSystem이 약 2~4배 빠르고 메모리 효율도 좋지만, DOTween은 더 많은 기능과 시퀀스 시스템을 갖추고 있어 다양한 연출 작업에 유리합니다.
 
 ### 📊 핵심 차이점
 
@@ -579,15 +573,15 @@ DampingSystem은 2차 미분방정식 기반의 물리 시뮬레이션을 통해
 
 ✅ **자연스러운 물리적 움직임**이 필요한 경우
 
-    *카메라 추적, 캐릭터 이동, UI 요소의 부드러운 반응*
+    카메라 추적, 캐릭터 이동, UI 요소의 부드러운 반응
   
 ✅ **실시간 반응형 애니메이션**이 필요한 경우
 
-    *목표값이 계속 변하는 상황 (마우스 추적, 플레이어 따라가기)*
+    목표값이 계속 변하는 상황 (마우스 추적, 플레이어 따라가기)
 
 ✅ **물리적 특성을 조절**하고 싶은 경우 
 
-    *감쇠비, 진동수 등*
+    감쇠비, 진동수 등
 
 <br />
 
@@ -595,19 +589,19 @@ DampingSystem은 2차 미분방정식 기반의 물리 시뮬레이션을 통해
 
 ✅ **정확한 시간 제어**가 필요한 경우
 
-    *컷신, 시퀀스 애니메이션, 타이밍이 중요한 연출*
+    컷신, 시퀀스 애니메이션, 타이밍이 중요한 연출
 
 ✅ **다양한 이징 효과**가 필요한 경우
 
-    *Ease In/Out, Bounce, Elastic 등의 특수 효과*
+    Ease In/Out, Bounce, Elastic 등의 특수 효과
 
 ✅ **복잡한 애니메이션 체인**이 필요한 경우
 
-    *순차적 애니메이션, 콜백, 이벤트 시스템*
+    순차적 애니메이션, 콜백, 이벤트 시스템
 
 ✅ **UI 애니메이션**에 특화된 기능이 필요한 경우
 
-    *크기, 회전, 색상 변경 등의 다양한 프로퍼티 애니메이션*
+    크기, 회전, 색상 변경 등의 다양한 프로퍼티 애니메이션
   
 ---
 
