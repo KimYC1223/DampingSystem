@@ -42,7 +42,7 @@ Youtube video [Giving Personality to Procedural Animations using Math](https://w
 
 To help you understand the project, I have prepared a [WebGL demo](https://KimYC1223.github.io/DampingSystem)!
 
-<a href="https://KimYC1223.github.io/DampingSystem" target="_blank"><img src="/Images/WebGLDemo.gif"></a>
+<a href="https://KimYC1223.github.io/DampingSystem" target="_blank"><img src="/Images/WebGLDemo.gif" style="border: 1px solid #626262;"></a>
 
 ---
 
@@ -254,25 +254,41 @@ The key difference lies in the approach. DampingSystem simulates a physically ac
 | **Animation Style** | Physically Natural Movements | Various Easing Functions |
 | **Control Method** | Physics Parameters (frequency, damping) | Time-Based (duration, delay) |
 
+<br />
+
 #### When to Choose DampingSystem
 
-- ✅ When you need **natural physical movement**
-- Camera tracking, character movement, smooth UI element response
-- ✅ When you need **real-time responsive animation**
-- When target values constantly change (mouse tracking, player following)
-- ✅ When you want to **minimize external dependencies**
-- ✅ When you want to **control physical properties** (damping ratio, frequency, etc.)
+✅ When you need **natural physical movement**
+
+    *Camera tracking, character movement, smooth UI element response*
+
+✅ When you need **real-time responsive animation**
+
+    *When target values constantly change (mouse tracking, player following)*
+
+✅ When you want to **control physical properties** 
+
+    *damping ratio, frequency, etc.*
+
+<br />
 
 #### When to Choose DOTween
 
-- ✅ When you need **precise timing control**
-- Cutscenes, sequence animations, and timing-critical productions
-- ✅ When you need **various easing effects**
-- Special effects such as Ease In/Out, Bounce, and Elastic
-- ✅ When you need **complex animation chains**
-- Sequential animation, callbacks, and event systems
-- ✅ When you need specialized features for **UI animation**
-- Various property animations such as size, rotation, color change, etc.
+✅ When you need **precise timing control**
+
+    *Cutscenes, sequence animations, and timing-critical productions*
+
+✅ When you need **various easing effects**
+
+    *Special effects such as Ease In/Out, Bounce, and Elastic*
+
+✅ When you need **complex animation chains**
+
+    *Sequential animation, callbacks, and event systems*
+
+✅ When you need specialized features for **UI animation**
+
+    *Various property animations such as size, rotation, color change, etc.*
 
 ---
 
@@ -346,7 +362,7 @@ There is a [English translation](#english) at the top.
 
 프로젝트의 이해를 돕기 위한 [WebGL 데모](https://KimYC1223.github.io/DampingSystem)가 준비되어 있습니다!
 
-<a href="https://KimYC1223.github.io/DampingSystem" target="_blank"><img src="/Images/WebGLDemo.gif"></a>
+<a href="https://KimYC1223.github.io/DampingSystem" target="_blank"><img src="/Images/WebGLDemo.gif" style="border: 1px solid #626262;"></a>
 
 ---
 
@@ -557,25 +573,41 @@ DampingSystem은 2차 미분방정식 기반의 물리 시뮬레이션을 통해
 | **애니메이션 스타일** | 물리적으로 자연스러운 움직임 | 다양한 이징 함수 |
 | **제어 방식** | 물리 매개변수 (frequency, damping) | 시간 기반 (duration, delay) |
 
+<br />
+
 ### DampingSystem을 선택해야 하는 경우
 
-- ✅ **자연스러운 물리적 움직임**이 필요한 경우
-  - 카메라 추적, 캐릭터 이동, UI 요소의 부드러운 반응
-- ✅ **실시간 반응형 애니메이션**이 필요한 경우
-  - 목표값이 계속 변하는 상황 (마우스 추적, 플레이어 따라가기)
-- ✅ **외부 의존성을 최소화**하고 싶은 경우
-- ✅ **물리적 특성을 조절**하고 싶은 경우 (감쇠비, 진동수 등)
+✅ **자연스러운 물리적 움직임**이 필요한 경우
+
+    *카메라 추적, 캐릭터 이동, UI 요소의 부드러운 반응*
+  
+✅ **실시간 반응형 애니메이션**이 필요한 경우
+
+    *목표값이 계속 변하는 상황 (마우스 추적, 플레이어 따라가기)*
+
+✅ **물리적 특성을 조절**하고 싶은 경우 
+
+    *감쇠비, 진동수 등*
+
+<br />
 
 ### DOTween을 선택해야 하는 경우
 
-- ✅ **정확한 시간 제어**가 필요한 경우
-  - 컷신, 시퀀스 애니메이션, 타이밍이 중요한 연출
-- ✅ **다양한 이징 효과**가 필요한 경우
-  - Ease In/Out, Bounce, Elastic 등의 특수 효과
-- ✅ **복잡한 애니메이션 체인**이 필요한 경우
-  - 순차적 애니메이션, 콜백, 이벤트 시스템
-- ✅ **UI 애니메이션**에 특화된 기능이 필요한 경우
-  - 크기, 회전, 색상 변경 등의 다양한 프로퍼티 애니메이션
+✅ **정확한 시간 제어**가 필요한 경우
+
+    *컷신, 시퀀스 애니메이션, 타이밍이 중요한 연출*
+
+✅ **다양한 이징 효과**가 필요한 경우
+
+    *Ease In/Out, Bounce, Elastic 등의 특수 효과*
+
+✅ **복잡한 애니메이션 체인**이 필요한 경우
+
+    *순차적 애니메이션, 콜백, 이벤트 시스템*
+
+✅ **UI 애니메이션**에 특화된 기능이 필요한 경우
+
+    *크기, 회전, 색상 변경 등의 다양한 프로퍼티 애니메이션*
   
 ---
 
